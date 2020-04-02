@@ -3,29 +3,29 @@ import { Badge, Card, CardBody, CardHeader, CardFooter, Button, Col, Pagination,
 import { Link } from 'react-router-dom';
 import firebase from '../../Firebase';
 
-class Mahasiswa extends Component {
+class Dosen extends Component {
   constructor(props) {
     super(props);
-    this.ref = firebase.firestore().collection('mahasiswa');
+    this.ref = firebase.firestore().collection('dosen');
     this.unsubscribe = null;
     this.state = {
-      dataMahasiswa: []
+      dataDosen: []
     };
   }
 
   onCollectionUpdate = (querySnapshot) => {
-    const dataMahasiswa = [];
+    const dataDosen = [];
     querySnapshot.forEach((doc) => {
-      const { nim, nama } = doc.data();
-      dataMahasiswa.push({
+      const { nip, nama } = doc.data();
+      dataDosen.push({
         key: doc.id,
         doc, // DocumentSnapshot
-        nim,
+        nip,
         nama
       });
     });
     this.setState({
-      dataMahasiswa
+      dataDosen
    });
   }
 
@@ -46,10 +46,10 @@ class Mahasiswa extends Component {
                 <Form action="" method="post" className="form-horizontal">
                   <FormGroup row>
                     <Col md="3">
-                      <Label htmlFor="hf-nim">NIM</Label>
+                      <Label htmlFor="hf-nip">NIP</Label>
                     </Col>
                     <Col xs="12" md="9">
-                      <Input type="text" id="hf-nim" name="hf-nim" placeholder="Masukkan NIM..." autoComplete="nim" onChange={this.onChangeSearch} />
+                      <Input type="text" id="hf-nip" name="hf-nip" placeholder="Masukkan NIP..." autoComplete="nip" onChange={this.onChangeSearch} />
                     </Col>
                   </FormGroup>
                   <FormGroup row>
@@ -74,25 +74,25 @@ class Mahasiswa extends Component {
             <Col xs="12" lg="12">
               <Card>
                 <CardHeader>
-                  <i className="fa fa-align-justify"></i> Data Mahasiswa
+                  <i className="fa fa-align-justify"></i> Data Dosen
                   <div style={{float:'right'}}>
-                    <Link to={'/mahasiswa/form'}><Button  color="success"><i className="fa fa-plus"></i> Add</Button></Link>
+                    <Link to={'/dosen/form'}><Button  color="success"><i className="fa fa-plus"></i> Add</Button></Link>
                   </div>
                 </CardHeader>
                 <CardBody>
                   <Table responsive striped>
                     <thead>
                     <tr>
-                      <th>NIM</th>
+                      <th>NIP</th>
                       <th>NAMA</th>
                     </tr>
                     </thead>
                     <tbody>
 
-                    {this.state.dataMahasiswa.map(dataMahasiswa =>
-                      <tr key={dataMahasiswa.key}>
-                        <td>{dataMahasiswa.nim}</td>
-                        <td>{dataMahasiswa.nama}</td>
+                    {this.state.dataDosen.map(dataDosen =>
+                      <tr key={dataDosen.key}>
+                        <td>{dataDosen.nip}</td>
+                        <td>{dataDosen.nama}</td>
                       </tr>
                     )}
                     </tbody>
@@ -118,4 +118,4 @@ class Mahasiswa extends Component {
   }
 }
 
-export default Mahasiswa;
+export default Dosen;

@@ -3,13 +3,13 @@ import { Badge, Card, CardBody, CardHeader, CardFooter, Button, Col, Pagination,
 import { Link } from 'react-router-dom';
 import firebase from '../../Firebase';
 
-class FormMahasiswa extends Component {
+class FormDosen extends Component {
     
     constructor() {
         super();
-        this.ref = firebase.firestore().collection('mahasiswa');
+        this.ref = firebase.firestore().collection('dosen');
         this.state = {
-          nim: '',
+          nip: '',
           nama: ''
         };
     }
@@ -23,40 +23,40 @@ class FormMahasiswa extends Component {
     onSubmit = (e) => {
         e.preventDefault();
     
-        const { nim, nama } = this.state;
+        const { nip, nama } = this.state;
     
         this.ref.add({
-          nim,
+          nip,
           nama
         }).then((docRef) => {
           this.setState({
-            nim: '',
+            nip: '',
             nama: ''
           });
-          this.props.history.push("/mahasiswa")
+          this.props.history.push("/dosen")
         })
         .catch((error) => {
           console.error("Error adding document: ", error);
         });
       }
   render() {
-    const { nim, nama } = this.state;
+    const { nip, nama } = this.state;
     return (
       <div>
         <Row>
             <Col xs="12" md="12">
                 <Card>
                     <CardHeader>
-                    <strong>Input</strong> Siswa
+                    <strong>Input</strong> Dosen
                     </CardHeader>
                     <CardBody>
                         <Form action="" method="post" className="form-horizontal" >
                             <FormGroup row>
                             <Col md="3">
-                                <Label htmlFor="hf-nis">NIM</Label>
+                                <Label htmlFor="hf-nip">NIP</Label>
                             </Col>
                             <Col xs="12" md="9">
-                                <Input type="text" id="hf-nis" name="nim" value={nim} placeholder="Masukkan Nim..." autoComplete="nis"
+                                <Input type="text" id="hf-nip" name="nip" value={nip} placeholder="Masukkan NIP..." autoComplete="nip"
                                 onChange={this.onChange} 
                                 />
                             </Col>
@@ -76,7 +76,7 @@ class FormMahasiswa extends Component {
                     <CardFooter>
                         <Button size="sm" color="success" onClick={this.onSubmit}><i className="fa fa-dot-circle-o"></i> Submit</Button>
                         &nbsp;
-                        <Link to={'/mahasiswa'}>
+                        <Link to={'/dosen'}>
                             <Button type="reset" size="sm" color="danger"><i className="fa fa-ban"></i> Back</Button>
                         </Link>
                     </CardFooter>
@@ -89,4 +89,4 @@ class FormMahasiswa extends Component {
   }
 }
 
-export default FormMahasiswa;
+export default FormDosen;

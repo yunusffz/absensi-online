@@ -235,6 +235,11 @@ export default {
       icon: 'icon-star'
     },
     {
+      name: 'Dosen',
+      url: '/dosen',
+      icon: 'icon-star'
+    },
+    {
       title: true,
       name: 'Extras',
     },

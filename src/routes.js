@@ -37,6 +37,8 @@ const Users = React.lazy(() => import('./views/Users/Users'));
 const User = React.lazy(() => import('./views/Users/User'));
 const Mahasiswa = React.lazy(() => import('./views/Mahasiswa/Mahasiswa'));
 const FormMahasiswa = React.lazy(() => import('./views/Mahasiswa/FormMahasiswa'));
+const Dosen = React.lazy(() => import('./views/Dosen/Dosen'));
+const FormDosen = React.lazy(() => import('./views/Dosen/FormDosen'));
 
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
 const routes = [
@@ -84,6 +86,9 @@ const routes = [
   { path: '/mahasiswa', exact: true,  name: 'Mahasiswa', component: Mahasiswa },
   { path: '/mahasiswa/form', exact: true, name: 'Detail Mahasiswa', component: FormMahasiswa },
   { path: '/mahasiswa/form/:id', exact: true, name: 'Detail Mahasiswa', component: FormMahasiswa },
+  { path: '/dosen', exact:true, name: 'Dosen', component: Dosen },
+  { path: '/dosen/form', exact:true, name: 'Detail Dosen', component: FormDosen },
+  { path: '/dosen/form/:id', exact:true, name: 'Detail Dosen', component: FormDosen },
 ];
 
 export default routes;
