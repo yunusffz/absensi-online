@@ -29,6 +29,10 @@ class Dosen extends Component {
    });
   }
 
+  deleteData(id) {
+    this.ref.doc(id).delete();
+  }
+
   componentDidMount() {
     this.unsubscribe = this.ref.onSnapshot(this.onCollectionUpdate);
   }
@@ -85,6 +89,7 @@ class Dosen extends Component {
                     <tr>
                       <th>NIP</th>
                       <th>NAMA</th>
+                      <th>AKSI</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -93,20 +98,11 @@ class Dosen extends Component {
                       <tr key={dataDosen.key}>
                         <td>{dataDosen.nip}</td>
                         <td>{dataDosen.nama}</td>
+                        <td><Button color="danger" size="sm" onClick={() => this.deleteData(dataDosen.key)}><i className="fa fa-ban"></i></Button></td>
                       </tr>
                     )}
                     </tbody>
                   </Table>
-                  <Pagination>
-                    <PaginationItem disabled><PaginationLink previous tag="button">Prev</PaginationLink></PaginationItem>
-                    <PaginationItem active>
-                      <PaginationLink tag="button">1</PaginationLink>
-                    </PaginationItem>
-                    <PaginationItem><PaginationLink tag="button">2</PaginationLink></PaginationItem>
-                    <PaginationItem><PaginationLink tag="button">3</PaginationLink></PaginationItem>
-                    <PaginationItem><PaginationLink tag="button">4</PaginationLink></PaginationItem>
-                    <PaginationItem><PaginationLink next tag="button">Next</PaginationLink></PaginationItem>
-                  </Pagination>
                 </CardBody>
               </Card>
             </Col>

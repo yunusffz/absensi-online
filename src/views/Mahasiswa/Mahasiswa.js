@@ -29,6 +29,10 @@ class Mahasiswa extends Component {
    });
   }
 
+  deleteData(id) {
+    this.ref.doc(id).delete();
+  }
+
   componentDidMount() {
     this.unsubscribe = this.ref.onSnapshot(this.onCollectionUpdate);
   }
@@ -85,6 +89,7 @@ class Mahasiswa extends Component {
                     <tr>
                       <th>NIM</th>
                       <th>NAMA</th>
+                      <th>AKSI</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -93,20 +98,11 @@ class Mahasiswa extends Component {
                       <tr key={dataMahasiswa.key}>
                         <td>{dataMahasiswa.nim}</td>
                         <td>{dataMahasiswa.nama}</td>
+                        <td><Button color="danger" size="sm" onClick={() => this.deleteData(dataMahasiswa.key)}><i className="fa fa-ban"></i></Button></td>
                       </tr>
                     )}
                     </tbody>
                   </Table>
-                  <Pagination>
-                    <PaginationItem disabled><PaginationLink previous tag="button">Prev</PaginationLink></PaginationItem>
-                    <PaginationItem active>
-                      <PaginationLink tag="button">1</PaginationLink>
-                    </PaginationItem>
-                    <PaginationItem><PaginationLink tag="button">2</PaginationLink></PaginationItem>
-                    <PaginationItem><PaginationLink tag="button">3</PaginationLink></PaginationItem>
-                    <PaginationItem><PaginationLink tag="button">4</PaginationLink></PaginationItem>
-                    <PaginationItem><PaginationLink next tag="button">Next</PaginationLink></PaginationItem>
-                  </Pagination>
                 </CardBody>
               </Card>
             </Col>
